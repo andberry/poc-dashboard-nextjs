@@ -1,8 +1,13 @@
+'use client';
+
 import {
   UserGroupIcon,
   HomeIcon,
   DocumentDuplicateIcon,
 } from '@heroicons/react/24/outline';
+import clsx from 'clsx';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 // Map of links to display in the side navigation.
 // Depending on the size of the application, this would be stored in a database.
@@ -17,19 +22,22 @@ const links = [
 ];
 
 export default function NavLinks() {
+  const currentPathname = usePathname()
   return (
     <>
       {links.map((link) => {
         const LinkIcon = link.icon;
         return (
-          <a
+          <Link
             key={link.name}
             href={link.href}
-            className="font-sg flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-slate-50 p-3 text-md hover:bg-teal-600 hover:text-white md:flex-none md:justify-start md:p-2 md:px-3"
+            className={clsx("font-sg flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-slate-50 p-3 text-md hover:bg-teal-600 hover:text-white md:flex-none md:justify-start md:p-2 md:px-3",
+              {'font-bold bg-teal-100': currentPathname === link.href}
+            )}
           >
             <LinkIcon className="w-6" />
             <p className="hidden md:block">{link.name}</p>
-          </a>
+          </Link>
         );
       })}
     </>
