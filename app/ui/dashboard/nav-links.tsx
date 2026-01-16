@@ -1,28 +1,30 @@
-'use client';
+"use client";
 
 import {
   UserGroupIcon,
   HomeIcon,
   DocumentDuplicateIcon,
-} from '@heroicons/react/24/outline';
-import clsx from 'clsx';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+  ArchiveBoxIcon,
+} from "@heroicons/react/24/outline";
+import clsx from "clsx";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 // Map of links to display in the side navigation.
 // Depending on the size of the application, this would be stored in a database.
 const links = [
-  { name: 'Home', href: '/dashboard', icon: HomeIcon },
+  { name: "Home", href: "/dashboard", icon: HomeIcon },
+  { name: "Products", href: "/dashboard/products", icon: ArchiveBoxIcon },
+  { name: "Customers", href: "/dashboard/customers", icon: UserGroupIcon },
   {
-    name: 'Invoices',
-    href: '/dashboard/invoices',
+    name: "Invoices",
+    href: "/dashboard/invoices",
     icon: DocumentDuplicateIcon,
   },
-  { name: 'Customers', href: '/dashboard/customers', icon: UserGroupIcon },
 ];
 
 export default function NavLinks() {
-  const currentPathname = usePathname()
+  const currentPathname = usePathname();
   return (
     <>
       {links.map((link) => {
@@ -31,8 +33,9 @@ export default function NavLinks() {
           <Link
             key={link.name}
             href={link.href}
-            className={clsx("font-sg flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-slate-50 p-3 text-md hover:bg-teal-600 hover:text-white md:flex-none md:justify-start md:p-2 md:px-3",
-              {'font-bold bg-teal-100': currentPathname === link.href}
+            className={clsx(
+              "font-sg flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-slate-50 p-3 text-md hover:bg-teal-600 hover:text-white md:flex-none md:justify-start md:p-2 md:px-3",
+              { "font-bold bg-teal-100": currentPathname === link.href },
             )}
           >
             <LinkIcon className="w-6" />
