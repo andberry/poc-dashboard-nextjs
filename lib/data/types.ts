@@ -34,3 +34,9 @@ export interface IInvoice {
   amount: number;
   status: TInvoiceStatus;
 }
+
+export interface ITotals {
+  productsTotal: number;
+  customersTotal: number;
+  invoicesTotal: number;
+}

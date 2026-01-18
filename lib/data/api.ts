@@ -1,6 +1,6 @@
 import { logMessage } from "../utils/misc";
 import { baseUrl } from "./settings";
-import { ICustomer, IInvoice, IProduct, IRevenueData } from "./types";
+import { ICustomer, IInvoice, IProduct, IRevenueData, ITotals } from "./types";
 import axios from "axios";
 
 axios.defaults.baseURL = baseUrl;
@@ -60,6 +60,23 @@ export const fetchRevenueData = async (): Promise<IRevenueData | null> => {
 export const fetchLatestInvoice = async (): Promise<IInvoice | null> => {
   try {
     const res = await axios.get<IInvoice>("/latest-invoice");
+    return res.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      logMessage(
+        `${error.name} ${error.status}: ${error.message} for ${error.config?.baseURL}${error.config?.url}`,
+        "error",
+      );
+    } else {
+      logMessage(String(error), "error");
+    }
+    return null;
+  }
+};
+
+export const fetchTotals = async (): Promise<ITotals | null> => {
+  try {
+    const res = await axios.get<ITotals>("/totals");
     return res.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
