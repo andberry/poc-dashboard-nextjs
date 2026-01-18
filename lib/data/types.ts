@@ -27,3 +27,10 @@ export const MONTHS = [
 export type TMonths = (typeof MONTHS)[number];
 
 export type IRevenueData = Record<TMonths, number>;
+
+export type TInvoiceStatus = "PENDING" | "PAID" | "CANCELLED";
+export interface IInvoice {
+  customer: ICustomer;
+  amount: number;
+  status: TInvoiceStatus;
+}
