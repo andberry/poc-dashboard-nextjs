@@ -7,6 +7,8 @@ axios.defaults.baseURL = baseUrl;
 
 // fetch products using simple fetch with try / catch / throw and log
 export const fetchProducts = async (): Promise<IProduct[]> => {
+  console.log("Fetching products... ");
+  await new Promise((resolve) => setTimeout(resolve, 2000));
   try {
     const res = await fetch(`${baseUrl}/products`);
     if (!res.ok) {
@@ -15,6 +17,7 @@ export const fetchProducts = async (): Promise<IProduct[]> => {
       );
     }
     const productsData = (await res.json()) as IProduct[];
+    console.log("Products data fetched after 2 seconds.");
     return productsData;
   } catch (error) {
     logMessage(String(error), "error");
