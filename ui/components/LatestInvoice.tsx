@@ -6,7 +6,7 @@ interface IProps {
 }
 export const LatestInvoice = ({ invoice }: IProps) => (
   <section>
-    <h2 className="font-sg text-2xl font-bold mb-4 uppercase">
+    <h2 className="font-sg text-2xl font-bold mb-4 uppercase text-teal-900">
       Latest Invoice
     </h2>
     <Table

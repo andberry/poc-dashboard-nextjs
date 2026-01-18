@@ -23,7 +23,9 @@ const monthsLabels: Record<TMonths, string> = {
 
 export const RevenueData = ({ data }: IProps) => (
   <section>
-    <h2 className="font-sg text-2xl font-bold mb-4 uppercase">Revenue Data</h2>
+    <h2 className="font-sg text-2xl font-bold mb-4 uppercase text-teal-900">
+      Revenue Data
+    </h2>
     <Table
       headerRows={["Monthss", "Revenuee"]}
       bodyRows={Object.entries(data).map((item) => [
