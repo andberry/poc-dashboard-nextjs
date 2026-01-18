@@ -41,8 +41,12 @@ export const fetchCustomers = async (): Promise<ICustomer[]> => {
 };
 
 export const fetchRevenueData = async (): Promise<IRevenueData | null> => {
+  console.log("Fetching revenue data...");
+  await new Promise((resolve) => setTimeout(resolve, 3000));
+
   try {
     const res = await axios.get<IRevenueData>("/revenue-data");
+    console.log("Revenue data fetched after 3 seconds.");
     return res.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
