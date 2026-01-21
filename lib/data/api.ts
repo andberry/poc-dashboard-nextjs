@@ -107,9 +107,10 @@ export const fetchTotals = async (): Promise<ITotals | null> => {
 };
 
 // fetch documents using axios
-export const fetchDocuments = async (): Promise<IDocument[]> => {
+export const fetchDocuments = async (s: string = ""): Promise<IDocument[]> => {
   try {
-    const res = await axios.get<IDocument[]>("/documents");
+    console.log("fetchDocuments: axios get: ", `/documents?s=${s}`);
+    const res = await axios.get<IDocument[]>(`/documents?s=${s}`);
     return res.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
