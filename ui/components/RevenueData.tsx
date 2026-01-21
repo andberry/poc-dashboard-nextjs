@@ -1,37 +1,12 @@
-import { IRevenueData } from "@/lib/data/types";
-import { TMonths } from "@/lib/data/types";
-import { Table } from "./base/Table";
+import { fetchRevenueData } from "@/lib/data/api";
+import { RevenueDataClient } from "./RevenueDataClient";
 
-interface IProps {
-  data: IRevenueData;
-}
+export const RevenueData = async () => {
+  const revenueData = await fetchRevenueData();
 
-const monthsLabels: Record<TMonths, string> = {
-  jan: "January",
-  feb: "February",
-  mar: "March",
-  apr: "April",
-  may: "May",
-  jun: "June",
-  jul: "July",
-  aug: "August",
-  sep: "September",
-  oct: "October",
-  nov: "November",
-  dec: "December",
+  if (!revenueData) {
+    return null;
+  }
+
+  return <RevenueDataClient revenueData={revenueData} />;
 };
-
-export const RevenueData = ({ data }: IProps) => (
-  <section>
-    <h2 className="font-sg text-2xl font-bold mb-4 uppercase text-teal-900">
-      Revenue Data
-    </h2>
-    <Table
-      headerRows={["Monthss", "Revenuee"]}
-      bodyRows={Object.entries(data).map((item) => [
-        monthsLabels[item[0] as TMonths],
-        `${item[1]}`,
-      ])}
-    />
-  </section>
-);
