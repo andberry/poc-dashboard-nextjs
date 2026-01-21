@@ -5,6 +5,7 @@ export interface IProduct {
 }
 
 export interface ICustomer {
+  id: string;
   name: string;
   email: string;
 }
@@ -39,4 +40,14 @@ export interface ITotals {
   productsTotal: number;
   customersTotal: number;
   invoicesTotal: number;
+  documentsTotal: number;
+}
+
+export interface IDocument {
+  id: number;
+  title: string;
+  file: string;
+  updateDate: string;
+  updateDateShort: string;
+  type: string;
 }

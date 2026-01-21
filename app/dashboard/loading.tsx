@@ -5,7 +5,7 @@ export default function Loading() {
       <div className="w-8 h-8 animate-spin">
         <ArrowPathIcon className="stroke-teal-600" />
       </div>
-      <p>Loading...</p>
+      <p className="font-sora uppercase text-[10px]">Loading...</p>
     </div>
   );
 }

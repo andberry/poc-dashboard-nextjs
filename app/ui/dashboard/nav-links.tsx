@@ -5,6 +5,7 @@ import {
   HomeIcon,
   DocumentDuplicateIcon,
   ArchiveBoxIcon,
+  DocumentChartBarIcon,
 } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import Link from "next/link";
@@ -21,6 +22,11 @@ const links = [
     href: "/dashboard/invoices",
     icon: DocumentDuplicateIcon,
   },
+  {
+    name: "Documents",
+    href: "/dashboard/documents",
+    icon: DocumentChartBarIcon,
+  },
 ];
 
 export default function NavLinks() {
@@ -34,8 +40,11 @@ export default function NavLinks() {
             key={link.name}
             href={link.href}
             className={clsx(
-              "font-sg flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-slate-50 p-3 text-md hover:bg-teal-600 hover:text-white md:flex-none md:justify-start md:p-2 md:px-3",
-              { "font-bold bg-teal-100": currentPathname === link.href },
+              "font-sg flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-slate-50 p-3 text-md hover:bg-tealModern hover:text-white md:flex-none md:justify-start md:p-2 md:px-3 duration-100 ease-linear",
+              {
+                "font-bold bg-tealModern text-white":
+                  currentPathname === link.href,
+              },
             )}
           >
             <LinkIcon className="w-6" />

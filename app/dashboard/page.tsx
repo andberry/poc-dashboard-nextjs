@@ -1,41 +1,44 @@
-import {
-  fetchLatestInvoice,
-  fetchRevenueData,
-  fetchTotals,
-} from "@/lib/data/api";
+import { fetchTotals } from "@/lib/data/api";
 import { LatestInvoice } from "@/ui/components/LatestInvoice";
 import { NumberCard } from "@/ui/components/NumberCard";
 import { RevenueData } from "@/ui/components/RevenueData";
+import { Suspense } from "react";
+import Loading from "./loading";
+import { H1 } from "@/ui/components/base/Typography/H1";
+import { LatestDocument } from "@/ui/components/LatestDocument";
+import { H2 } from "@/ui/components/base/Typography/H2";
 
 export default async function Page() {
-  const revenueData = await fetchRevenueData();
-  const latestInvoice = await fetchLatestInvoice();
   const totals = await fetchTotals();
 
   return (
-    <div className="bg-slate-200 h-full p-12">
-      <h1 className="font-sg text-4xl font-bold mb-8 uppercase">
-        Dashboard Homepage
-      </h1>
+    <div className="bg-white h-full p-12 flex flex-col gap-24">
       {totals && (
-        <div className="flex gap-4 bg-slate-200 py-4 mb-8 rounded-sm">
-          <NumberCard label={"Customers"} value={totals.customersTotal} />
-          <NumberCard label={"Products"} value={totals.productsTotal} />
-          <NumberCard label={"Invoices"} value={totals.invoicesTotal} />
+        <div>
+          <H2 first="Featured" second="Numbers" />
+          <div className="flex gap-12 rounded-sm">
+            <NumberCard label={"Products"} value={totals.productsTotal} />
+            <NumberCard label={"Customers"} value={totals.customersTotal} />
+            <NumberCard label={"Invoices"} value={totals.invoicesTotal} />
+            <NumberCard label={"Documents"} value={totals.documentsTotal} />
+          </div>
         </div>
       )}
-      <div className="xl:grid grid-cols-2 gap-12">
-        {revenueData && (
-          <div className="border border-slate-300 rounded-sm p-8">
-            <RevenueData data={revenueData} />
-          </div>
-        )}
+      <div className="xl:grid grid-cols-12 gap-24">
+        <div className="col-span-7">
+          <Suspense fallback={<Loading />}>
+            <RevenueData />
+          </Suspense>
+        </div>
 
-        {latestInvoice && (
-          <div className="border border-slate-300 rounded-sm p-8">
-            <LatestInvoice invoice={latestInvoice} />
-          </div>
-        )}
+        <div className="flex flex-col gap-12 col-span-5">
+          <Suspense fallback={<Loading />}>
+            <LatestInvoice />
+          </Suspense>
+          <Suspense fallback={<Loading />}>
+            <LatestDocument />
+          </Suspense>
+        </div>
       </div>
     </div>
   );

@@ -13,8 +13,8 @@ const config: Config = {
         "13": "repeat(13, minmax(0, 1fr))",
       },
       fontFamily: {
-        inter: ["Inter", "sans-serif"],
-        sg: ["Space Grotesk", "sans-serif"],
+        manrope: ["Manrope", "sans-serif"],
+        sora: ["Sora", "sans-serif"],
       },
       colors: {
         blue: {
@@ -22,6 +22,14 @@ const config: Config = {
           500: "#0070F3",
           600: "#2F6FEB",
         },
+        navyDeep: "#0a1628",
+        navyPrimary: "#1e3a5f",
+        tealModern: "#14b8a6",
+        tealDeeper: "#0d9488",
+        tealCyan: "#06b6d4",
+        greenSuccess: "#059669",
+        amber: "#d97706",
+        clinicalBlue: "#3b82f6",
       },
       keyframes: {
         shimmer: {

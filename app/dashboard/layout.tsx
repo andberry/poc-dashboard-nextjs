@@ -7,7 +7,7 @@ interface IProps {
 }
 
 const DashboardLayout = ({ title, children }: PropsWithChildren<IProps>) => (
-  <div className="flex min-h-screen flex-col md:flex-row bg-slate-100">
+  <div className="flex min-h-screen flex-col md:flex-row bg-white">
     <div className="w-full flex-none md:w-64">
       <SideNav />
     </div>
